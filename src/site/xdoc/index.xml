@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+    <properties>
+        <title>Plugin AdminAvatar</title>
+    </properties>
+    <body>
+        <section name="Plugin adminavatar">
+            <!--
+            <p>
+                <img src="images/adminavatar.png" />
+            </p>
+            -->
+            <subsection name="Introduction">
+                <p>This plugin let use avatars for Admin (Back Office) users based on the 
+                    Lutece AvatarServer Plugin or on Gravatar.
+                </p>
+                <p>
+                    It provides also a local AdminFeature "My Avatar" to manage its own avatar.
+                </p>
+                <p>
+                    NB : the AvatarServer can be local or remote.
+                </p>
+            </subsection>
+            <subsection name="Configuration">
+                <p>
+                    In the Site properties, configure the AvatarServer URL (host:port/[context]/)
+                </p>
+            </subsection>
+            <subsection name="Usage">
+                <p>
+                    Into an AdminFeature, the avatar is avalaible with this url :
+                    <pre>
+servlet/plugins/adminavatar/avatar?id_user=n                        
+                    </pre>                      
+                </p>
+            </subsection>
+        </section>
+    </body>
+</document>
+

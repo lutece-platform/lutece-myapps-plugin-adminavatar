@@ -1,0 +1,36 @@
+<div class="row" >
+    <div class="col-md-3 well">
+        <h3>#i18n{avatarserver.update_avatar.labelCurrentAvatar}</h3>
+        <img class="avatar avatar-large" src="servlet/plugins/adminavatar/avatar?id_user=${id_user}" alt="Avatar" title="Avatar" />
+        <br />
+        <br />
+        <br />
+
+    </div>
+
+    <div class="col-md-7">
+
+        <form class="form-horizontal" method="post" action="${server_url}servlet/plugins/avatarserver/post/" enctype="multipart/form-data">
+            <input type="hidden" name="email" value="${email}" />
+            <input type="hidden" name="return_url" value="${return_url}" />
+            <fieldset>
+                <legend>#i18n{avatarserver.update_avatar.titleUpdateAvatar}</legend>
+                <@messages errors=errors />
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="image" >#i18n{avatarserver.update_avatar.labelAvatarImage} * :</label>
+                    <div class="col-sm-8">
+                        <input type="file" class="" id="avatar_image" name="image" tabindex="2" />
+                        <span class="help-block">#i18n{avatarserver.update_avatar.labelAvatarImage.help}</span>
+                    </div>
+                </div>
+
+
+                <button class="btn btn-primary" type="submit" tabindex="3" >
+                    #i18n{portal.util.labelModify}
+                </button>
+
+            </fieldset>
+        </form>
+    </div>  
+</div>
