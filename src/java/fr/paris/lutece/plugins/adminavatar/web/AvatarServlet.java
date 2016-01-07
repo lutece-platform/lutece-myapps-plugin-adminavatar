@@ -37,33 +37,38 @@ import fr.paris.lutece.plugins.adminavatar.service.AdminAvatarService;
 import fr.paris.lutece.plugins.avatar.service.AvatarService;
 import fr.paris.lutece.portal.business.user.AdminUser;
 import fr.paris.lutece.portal.business.user.AdminUserHome;
+
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 /**
  * AvatarServlet
  */
 public class AvatarServlet extends HttpServlet
 {
-
     private static final String PARAMATER_ID_USER = "id_user";
     private static final String URL_DEFAULT_AVATAR = "images/local/skin/plugins/avatarserver/avatar.jpg";
 
     @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException
+    protected void service( HttpServletRequest request, HttpServletResponse response )
+        throws ServletException, IOException
     {
-        String strUserId = request.getParameter(PARAMATER_ID_USER);
-        String strServerUrl = AdminAvatarService.GetAvatarServerUrl( request );
+        String strUserId = request.getParameter( PARAMATER_ID_USER );
+        String strServerUrl = AdminAvatarService.getAvatarServerUrl( request );
+
         try
         {
-            int nIdUser = Integer.parseInt(strUserId);
+            int nIdUser = Integer.parseInt( strUserId );
             AdminUser user = AdminUserHome.findByPrimaryKey( nIdUser );
-            if( user != null )
+
+            if ( user != null )
             {
-                String strUrl = strServerUrl + AvatarService.getAvatarUrl( user.getEmail() );
+                String strUrl = strServerUrl + AvatarService.getAvatarUrl( user.getEmail(  ) );
                 response.sendRedirect( strUrl );
             }
             else
@@ -71,10 +76,9 @@ public class AvatarServlet extends HttpServlet
                 response.sendRedirect( strServerUrl + URL_DEFAULT_AVATAR );
             }
         }
-        catch (NumberFormatException e)
+        catch ( NumberFormatException e )
         {
             response.sendRedirect( strServerUrl + URL_DEFAULT_AVATAR );
         }
     }
-
 }

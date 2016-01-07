@@ -42,4 +42,11 @@
         <jiraProjectName>ADMAVATAR</jiraProjectName>
         <jiraComponentId>12874</jiraComponentId>
     </properties>
+    
+    <scm>
+        <connection>scm:git:https://github.com/lutece-platform/lutece-myapps-plugin-adminavatar.git</connection>
+        <developerConnection>scm:git:https://github.com/lutece-platform/lutece-myapps-plugin-adminavatar.git</developerConnection>
+        <url>https://github.com/lutece-platform/lutece-myapps-plugin-adminavatar.git</url>
+    </scm>
+    
 </project>

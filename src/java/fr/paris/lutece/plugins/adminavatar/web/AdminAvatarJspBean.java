@@ -34,11 +34,12 @@
 package fr.paris.lutece.plugins.adminavatar.web;
 
 import fr.paris.lutece.plugins.adminavatar.service.AdminAvatarService;
-import fr.paris.lutece.portal.service.datastore.DatastoreService;
 import fr.paris.lutece.portal.service.util.AppPathService;
 import fr.paris.lutece.portal.util.mvc.admin.MVCAdminJspBean;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
+
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -49,7 +50,6 @@ public class AdminAvatarJspBean extends MVCAdminJspBean
 {
     // Right
     public static final String RIGHT_MANAGEADMINAVATAR = "ADMINAVATAR_MANAGEMENT";
-    
     private static final String TEMPLATE_MANAGE_SQLPAGES = "admin/plugins/adminavatar/adminavatar.html";
     private static final String PROPERTY_PAGE_TITLE_ADMIN_AVATAR = "adminavatar.pageTitle.adminAvatar";
     private static final String VIEW_ADMIN_AVATAR = "home";
@@ -58,24 +58,27 @@ public class AdminAvatarJspBean extends MVCAdminJspBean
     private static final String MARK_ID_USER = "id_user";
     private static final String MARK_RETURN_URL = "return_url";
     private static final String URL_RETURN = "jsp/admin/plugins/adminavatar/ManageAdminAvatar.jsp";
-    
+
+    /**
+     * Gets the Avatar
+     * @param request The HTTP request
+     * @return The avatar URL
+     */
     @View( value = VIEW_ADMIN_AVATAR, defaultView = true )
     public String getAdminAvatar( HttpServletRequest request )
     {
         AdminAvatarService.checkAvatarServerConfiguration( request );
-        String strAvatarServerUrl = AdminAvatarService.GetAvatarServerUrl(request);
-        String strEmail = getUser().getEmail();
-        String strReturnUrl = AppPathService.getBaseUrl(request) + URL_RETURN;
-                
+
+        String strAvatarServerUrl = AdminAvatarService.getAvatarServerUrl( request );
+        String strEmail = getUser(  ).getEmail(  );
+        String strReturnUrl = AppPathService.getBaseUrl( request ) + URL_RETURN;
+
         Map<String, Object> model = getModel(  );
-        model.put( MARK_AVATAR_SERVER_URL , strAvatarServerUrl );
+        model.put( MARK_AVATAR_SERVER_URL, strAvatarServerUrl );
         model.put( MARK_EMAIL, strEmail );
-        model.put( MARK_ID_USER, getUser().getUserId() );
-        model.put( MARK_RETURN_URL , strReturnUrl );
-        
+        model.put( MARK_ID_USER, getUser(  ).getUserId(  ) );
+        model.put( MARK_RETURN_URL, strReturnUrl );
+
         return getPage( PROPERTY_PAGE_TITLE_ADMIN_AVATAR, TEMPLATE_MANAGE_SQLPAGES, model );
-        
     }
-
-
 }

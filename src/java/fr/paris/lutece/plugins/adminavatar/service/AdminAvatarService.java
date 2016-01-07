@@ -35,27 +35,41 @@ package fr.paris.lutece.plugins.adminavatar.service;
 
 import fr.paris.lutece.portal.service.datastore.DatastoreService;
 import fr.paris.lutece.portal.service.util.AppPathService;
+
 import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * AdminAvatar Service
  */
-public class AdminAvatarService
+public final class AdminAvatarService
 {
     private static final String DSKEY_AVATARSERVER_URL = "adminavatar.site_property.avatarserver.Url";
 
-
+    /**
+     * Check avatar server configuration
+     * @param request The HTTP request
+     */
     public static void checkAvatarServerConfiguration( HttpServletRequest request )
     {
-        if( ! DatastoreService.existsKey( DSKEY_AVATARSERVER_URL ))
+        if ( !DatastoreService.existsKey( DSKEY_AVATARSERVER_URL ) )
         {
             DatastoreService.setDataValue( DSKEY_AVATARSERVER_URL, AppPathService.getBaseUrl( request ) );
         }
     }
-    
-    public static String GetAvatarServerUrl( HttpServletRequest request )
+
+    /**
+     * Gets Avatar Server URL
+     * @param request The HTTP request
+     * @return The URL
+     */
+    public static String getAvatarServerUrl( HttpServletRequest request )
     {
-        return DatastoreService.getDataValue( DSKEY_AVATARSERVER_URL, AppPathService.getBaseUrl(request));
+        return DatastoreService.getDataValue( DSKEY_AVATARSERVER_URL, AppPathService.getBaseUrl( request ) );
     }
     
+    /** Private constructor */
+    private AdminAvatarService()
+    {
+    }
 }
