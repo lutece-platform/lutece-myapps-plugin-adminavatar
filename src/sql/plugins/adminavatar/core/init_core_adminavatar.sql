@@ -13,3 +13,9 @@ INSERT INTO core_admin_right (id_right,name,level_right,admin_url,description,is
 DELETE FROM core_user_right WHERE id_right = 'ADMINAVATAR_MANAGEMENT';
 INSERT INTO core_user_right (id_right,id_user) VALUES ('ADMINAVATAR_MANAGEMENT',1);
 
+--
+-- Data for table core_datastore
+--
+DELETE FROM core_datastore WHERE entity_key = 'adminavatar.site_property.avatarserver.Url';
+INSERT INTO core_datastore (entity_key, entity_value) VALUES ('adminavatar.site_property.avatarserver.Url', '');
+
