@@ -1,7 +1,7 @@
+![](http://dev.lutece.paris.fr/jenkins/buildStatus/icon?job=myapps-plugin-adminavatar-deploy)
+# Plugin adminavatar
 
-#Plugin adminavatar
-
-##Introduction
+## Introduction
 
 This plugin let use avatars for Admin (Back Office) users based on the Lutece AvatarServer Plugin or on Gravatar.
 
@@ -9,11 +9,11 @@ It provides also a local AdminFeature "My Avatar" to manage its own avatar.
 
 NB : the AvatarServer can be local or remote.
 
-##Configuration
+## Configuration
 
 In the Site properties, configure the AvatarServer URL (host:port/[context]/)
 
-##Usage
+## Usage
 
 Into an AdminFeature, the avatar is avalaible with this url :
 ```
