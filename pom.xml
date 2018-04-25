@@ -10,7 +10,7 @@
     <groupId>fr.paris.lutece.plugins</groupId>
     <artifactId>plugin-adminavatar</artifactId>
     <packaging>lutece-plugin</packaging>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <name>Lutece adminavatar plugin</name>
 
     <repositories>
@@ -47,7 +47,7 @@
         <connection>scm:git:https://github.com/lutece-platform/lutece-myapps-plugin-adminavatar.git</connection>
         <developerConnection>scm:git:https://github.com/lutece-platform/lutece-myapps-plugin-adminavatar.git</developerConnection>
         <url>https://github.com/lutece-platform/lutece-myapps-plugin-adminavatar.git</url>
-      <tag>HEAD</tag>
+      <tag>plugin-adminavatar-1.0.1</tag>
   </scm>
     
 </project>
