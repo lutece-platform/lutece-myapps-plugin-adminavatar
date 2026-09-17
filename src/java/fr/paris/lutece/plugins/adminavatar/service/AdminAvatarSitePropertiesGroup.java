@@ -33,43 +33,44 @@
  */
 package fr.paris.lutece.plugins.adminavatar.service;
 
-import fr.paris.lutece.portal.service.datastore.DatastoreService;
-import fr.paris.lutece.portal.service.util.AppPathService;
+import fr.paris.lutece.portal.service.site.properties.ILocalizedSitePropertiesGroup;
 
-import jakarta.servlet.http.HttpServletRequest;
-
+import jakarta.enterprise.context.ApplicationScoped;
 
 /**
- * AdminAvatar Service
+ * Group of site properties holding the back-office avatar server configuration.
  */
-public final class AdminAvatarService
+@ApplicationScoped
+public class AdminAvatarSitePropertiesGroup implements ILocalizedSitePropertiesGroup
 {
-    private static final String DSKEY_AVATARSERVER_URL = "adminavatar.site_property.avatarserver.Url";
+    private static final String KEY_NAME = "adminavatar.site_properties.name";
+    private static final String KEY_DESCRIPTION = "adminavatar.site_properties.description";
+    private static final String PREFIX = "adminavatar.site_property.";
 
     /**
-     * Check avatar server configuration
-     * @param request The HTTP request
+     * {@inheritDoc}
      */
-    public static void checkAvatarServerConfiguration( HttpServletRequest request )
+    @Override
+    public String getNameKey( )
     {
-        if ( !DatastoreService.existsKey( DSKEY_AVATARSERVER_URL ) )
-        {
-            DatastoreService.setDataValue( DSKEY_AVATARSERVER_URL, AppPathService.getBaseUrl( request ) );
-        }
+        return KEY_NAME;
     }
 
     /**
-     * Gets Avatar Server URL
-     * @param request The HTTP request
-     * @return The URL
+     * {@inheritDoc}
      */
-    public static String getAvatarServerUrl( HttpServletRequest request )
+    @Override
+    public String getDescriptionKey( )
     {
-        return DatastoreService.getDataValue( DSKEY_AVATARSERVER_URL, AppPathService.getBaseUrl( request ) );
+        return KEY_DESCRIPTION;
     }
-    
-    /** Private constructor */
-    private AdminAvatarService()
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getDatastoreKeysPrefix( )
     {
+        return PREFIX;
     }
 }

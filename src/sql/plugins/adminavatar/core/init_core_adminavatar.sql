@@ -1,3 +1,6 @@
+-- liquibase formatted sql
+-- changeset adminavatar:init_core_adminavatar.sql
+-- preconditions onFail:MARK_RAN onError:WARN
 
 --
 -- Data for table core_admin_right
