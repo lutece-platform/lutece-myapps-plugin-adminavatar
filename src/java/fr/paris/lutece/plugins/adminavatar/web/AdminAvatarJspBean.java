@@ -37,15 +37,20 @@ import fr.paris.lutece.plugins.adminavatar.service.AdminAvatarService;
 import fr.paris.lutece.portal.service.util.AppPathService;
 import fr.paris.lutece.portal.util.mvc.admin.MVCAdminJspBean;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
+import fr.paris.lutece.portal.util.mvc.admin.annotations.Controller;
+import fr.paris.lutece.portal.web.cdi.mvc.Models;
 
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Named;
+import jakarta.servlet.http.HttpServletRequest;
 
 
 /**
  * ManageAdminAvatar JSP Bean abstract class for JSP Bean
  */
+@RequestScoped
+@Named
+@Controller( controllerJsp = "ManageAdminAvatar.jsp", controllerPath = "jsp/admin/plugins/adminavatar/", right = AdminAvatarJspBean.RIGHT_MANAGEADMINAVATAR )
 public class AdminAvatarJspBean extends MVCAdminJspBean
 {
     // Right
@@ -65,7 +70,7 @@ public class AdminAvatarJspBean extends MVCAdminJspBean
      * @return The avatar URL
      */
     @View( value = VIEW_ADMIN_AVATAR, defaultView = true )
-    public String getAdminAvatar( HttpServletRequest request )
+    public String getAdminAvatar( HttpServletRequest request, Models model )
     {
         AdminAvatarService.checkAvatarServerConfiguration( request );
 
@@ -73,7 +78,6 @@ public class AdminAvatarJspBean extends MVCAdminJspBean
         String strEmail = getUser(  ).getEmail(  );
         String strReturnUrl = AppPathService.getBaseUrl( request ) + URL_RETURN;
 
-        Map<String, Object> model = getModel(  );
         model.put( MARK_AVATAR_SERVER_URL, strAvatarServerUrl );
         model.put( MARK_EMAIL, strEmail );
         model.put( MARK_ID_USER, getUser(  ).getUserId(  ) );

@@ -1,36 +1,30 @@
-<div class="row" >
-    <div class="col-md-3 well">
-        <h3>#i18n{avatarserver.update_avatar.labelCurrentAvatar}</h3>
-        <img class="avatar avatar-large" src="servlet/plugins/adminavatar/avatar?id_user=${id_user}" alt="Avatar" title="Avatar" />
-        <br />
-        <br />
-        <br />
-
-    </div>
-
-    <div class="col-md-7">
-
-        <form class="form-horizontal" method="post" action="${server_url}servlet/plugins/avatarserver/post/" enctype="multipart/form-data">
-            <input type="hidden" name="email" value="${email}" />
-            <input type="hidden" name="return_url" value="${return_url}" />
-            <fieldset>
-                <legend>#i18n{avatarserver.update_avatar.titleUpdateAvatar}</legend>
+<@pageContainer>
+    <@pageColumn>
+        <@pageHeader title='#i18n{adminavatar.update_avatar.titleUpdateAvatar}' />
+        <@row>
+            <@columns xs=12 md=4>
+                <@box>
+                    <@boxHeader title='#i18n{adminavatar.update_avatar.labelCurrentAvatar}' />
+                    <@boxBody class='text-center'>
+                        <img class="avatar avatar-xl" src="servlet/plugins/adminavatar/avatar?id_user=${id_user}" alt="#i18n{adminavatar.update_avatar.labelCurrentAvatar}" />
+                    </@boxBody>
+                </@box>
+            </@columns>
+            <@columns xs=12 md=8>
+                <@tform method='post' action='${server_url}servlet/plugins/avatarserver/post/' enctype='multipart/form-data'>
+                <@input type='hidden' name='email' value=email />
+                <@input type='hidden' name='return_url' value=return_url />
                 <@messages errors=errors />
-
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="image" >#i18n{avatarserver.update_avatar.labelAvatarImage} * :</label>
-                    <div class="col-sm-8">
-                        <input type="file" class="" id="avatar_image" name="image" tabindex="2" />
-                        <span class="help-block">#i18n{avatarserver.update_avatar.labelAvatarImage.help}</span>
-                    </div>
-                </div>
-
-
-                <button class="btn btn-primary" type="submit" tabindex="3" >
-                    #i18n{portal.util.labelModify}
-                </button>
-
-            </fieldset>
-        </form>
-    </div>  
-</div>
+                <@fieldSet>
+                    <@formGroup labelFor='avatar_image' labelKey='#i18n{adminavatar.update_avatar.labelAvatarImage}' helpKey='#i18n{adminavatar.update_avatar.labelAvatarImage.help}' mandatory=true>
+                        <@input type='file' id='avatar_image' name='image' />
+                    </@formGroup>
+                    <@formGroup>
+                        <@button type='submit' title='#i18n{portal.util.labelModify}' />
+                    </@formGroup>
+                </@fieldSet>
+                </@tform>
+            </@columns>
+        </@row>
+    </@pageColumn>
+</@pageContainer>
