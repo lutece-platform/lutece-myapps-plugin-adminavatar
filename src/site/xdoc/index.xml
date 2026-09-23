@@ -25,6 +25,10 @@
                 <p>
                     In the Site properties, configure the AvatarServer URL (host:port/[context]/)
                 </p>
+                <p>
+                    The browser loads the avatar from the avatar provider: add its host (https://www.gravatar.com for Gravatar)
+                    to the img-src directive of the back office Content-Security-Policy (feature "Security header Management").
+                </p>
             </subsection>
             <subsection name="Usage">
                 <p>
