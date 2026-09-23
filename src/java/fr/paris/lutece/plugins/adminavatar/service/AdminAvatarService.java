@@ -38,6 +38,8 @@ import fr.paris.lutece.portal.service.util.AppPathService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
+
 
 /**
  * AdminAvatar Service
@@ -61,11 +63,13 @@ public final class AdminAvatarService
     /**
      * Gets Avatar Server URL
      * @param request The HTTP request
-     * @return The URL
+     * @return The URL, the base URL of the site when none is configured
      */
     public static String getAvatarServerUrl( HttpServletRequest request )
     {
-        return DatastoreService.getDataValue( DSKEY_AVATARSERVER_URL, AppPathService.getBaseUrl( request ) );
+        String strUrl = DatastoreService.getDataValue( DSKEY_AVATARSERVER_URL, null );
+
+        return StringUtils.isBlank( strUrl ) ? AppPathService.getBaseUrl( request ) : strUrl;
     }
     
     /** Private constructor */

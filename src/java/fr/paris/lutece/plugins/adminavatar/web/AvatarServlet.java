@@ -39,6 +39,7 @@ import fr.paris.lutece.portal.business.user.AdminUser;
 import fr.paris.lutece.portal.business.user.AdminUserHome;
 
 import java.io.IOException;
+import java.net.URI;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -54,6 +55,13 @@ public class AvatarServlet extends HttpServlet
     private static final String PARAMATER_ID_USER = "id_user";
     private static final String URL_DEFAULT_AVATAR = "images/local/skin/plugins/avatarserver/avatar.jpg";
 
+    /**
+     * Redirects to the avatar of the user given by its id, or to the default avatar.
+     * @param request The HTTP request
+     * @param response The HTTP response
+     * @throws ServletException If an error occurs
+     * @throws IOException If the redirect fails
+     */
     @Override
     protected void service( HttpServletRequest request, HttpServletResponse response )
         throws ServletException, IOException
@@ -68,8 +76,7 @@ public class AvatarServlet extends HttpServlet
 
             if ( user != null )
             {
-                String strUrl = strServerUrl + AvatarService.getAvatarUrl( user.getEmail(  ) );
-                response.sendRedirect( strUrl );
+                response.sendRedirect( resolve( strServerUrl, AvatarService.getAvatarUrl( user.getEmail(  ) ) ) );
             }
             else
             {
@@ -80,5 +87,16 @@ public class AvatarServlet extends HttpServlet
         {
             response.sendRedirect( strServerUrl + URL_DEFAULT_AVATAR );
         }
+    }
+
+    /**
+     * Resolves the URL given by the avatar provider against the avatar server URL.
+     * @param strServerUrl The avatar server URL
+     * @param strAvatarUrl The URL given by the avatar provider, absolute or relative to the avatar server
+     * @return The absolute URL of the avatar
+     */
+    static String resolve( String strServerUrl, String strAvatarUrl )
+    {
+        return URI.create( strAvatarUrl ).isAbsolute(  ) ? strAvatarUrl : ( strServerUrl + strAvatarUrl );
     }
 }

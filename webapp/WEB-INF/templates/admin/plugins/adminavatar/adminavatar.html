@@ -6,7 +6,7 @@
                 <@box>
                     <@boxHeader title='#i18n{adminavatar.update_avatar.labelCurrentAvatar}' />
                     <@boxBody class='text-center'>
-                        <img class="avatar avatar-xl" src="servlet/plugins/adminavatar/avatar?id_user=${id_user}" alt="#i18n{adminavatar.update_avatar.labelCurrentAvatar}" />
+                        <img class="avatar avatar-xl" src="servlet/plugins/adminavatar/avatar?id_user=${id_user}" alt="" />
                     </@boxBody>
                 </@box>
             </@columns>
@@ -20,7 +20,7 @@
                         <@input type='file' id='avatar_image' name='image' />
                     </@formGroup>
                     <@formGroup>
-                        <@button type='submit' title='#i18n{portal.util.labelModify}' />
+                        <@button type='submit' title='#i18n{portal.util.labelModify}' buttonIcon='check' />
                     </@formGroup>
                 </@fieldSet>
                 </@tform>
